@@ -1,0 +1,58 @@
+import 'package:flutter/material.dart';
+import '../../../core/theme/app_colors.dart';
+
+class EmptyState extends StatelessWidget {
+  final IconData icon;
+  final String titulo;
+  final String? descricao;
+  final Widget? acao;
+
+  const EmptyState({
+    super.key,
+    this.icon = Icons.inbox_outlined,
+    required this.titulo,
+    this.descricao,
+    this.acao,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 56, color: AppColors.gray01.withOpacity(0.5)),
+            const SizedBox(height: 16),
+            Text(
+              titulo,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: AppColors.textDark,
+              ),
+            ),
+            if (descricao != null) ...[
+              const SizedBox(height: 6),
+              Text(
+                descricao!,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 13,
+                  color: AppColors.textMuted,
+                ),
+              ),
+            ],
+            if (acao != null) ...[
+              const SizedBox(height: 20),
+              acao!,
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
